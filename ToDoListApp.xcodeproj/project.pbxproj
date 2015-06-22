@@ -24,6 +24,8 @@
 		79C5974919418A280085192D /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C5974819418A280085192D /* AddToDoViewController.swift */; };
 		79C5974C19418A280085192D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C5974A19418A280085192D /* Main.storyboard */; };
 		79C5974E19418A280085192D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79C5974D19418A280085192D /* Images.xcassets */; };
+		8CD6F1691B38C29E00F20E78 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD6F1681B38C29E00F20E78 /* LocalAuthentication.framework */; };
+		8CF9138F1B36428F00EEF437 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF9138E1B36428F00EEF437 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		79C5974D19418A280085192D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		79C5975819418A280085192D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79C5975919418A280085192D /* MyAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppTests.swift; sourceTree = "<group>"; };
+		8CD6F1681B38C29E00F20E78 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		8CF9138E1B36428F00EEF437 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD6F1691B38C29E00F20E78 /* LocalAuthentication.framework in Frameworks */,
 				18EC1E311B322C6E00428339 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +71,7 @@
 		79C5973819418A280085192D = {
 			isa = PBXGroup;
 			children = (
+				8CD6F1681B38C29E00F20E78 /* LocalAuthentication.framework */,
 				18EC1E301B322C6E00428339 /* CoreData.framework */,
 				79C5974319418A280085192D /* ToDoListApp */,
 				79C5975619418A280085192D /* ToDoListAppTests */,
@@ -90,6 +96,7 @@
 				795A073B1941B34900BFB490 /* TableViewController.h */,
 				79C5974619418A280085192D /* AppDelegate.swift */,
 				79C5974819418A280085192D /* AddToDoViewController.swift */,
+				8CF9138E1B36428F00EEF437 /* LoginViewController.swift */,
 				79C5974A19418A280085192D /* Main.storyboard */,
 				79C5974D19418A280085192D /* Images.xcassets */,
 				79C5974419418A280085192D /* Supporting Files */,
@@ -211,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF9138F1B36428F00EEF437 /* LoginViewController.swift in Sources */,
 				79C5974919418A280085192D /* AddToDoViewController.swift in Sources */,
 				7928D5A61941ACBF00654B60 /* ToDoListTableViewController.swift in Sources */,
 				18EC1E381B32487F00428339 /* ToDoItem.swift in Sources */,

@@ -26,11 +26,27 @@ import CoreData
    
     
     override func viewDidLoad(){
-        super.viewDidLoad()
+        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         fetchLog()
         if(items.count==0){
             loadInitialData()
         }
+        if (isLoggedIn != 1) {
+            self.performSegueWithIdentifier("goto_login", sender: self)
+        } else {
+            super.viewDidLoad()
+        }
+    }
+    
+    
+    
+    @IBAction func logout(sender : UIBarButtonItem) {
+        
+        let appDomain = NSBundle.mainBundle().bundleIdentifier
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+        
+        self.performSegueWithIdentifier("goto_login", sender: self)
     }
     
     func loadInitialData(){
@@ -138,7 +154,6 @@ import CoreData
         
         self.toDoItems = NSMutableArray(array:items)
     }
-    
 }
 
 
