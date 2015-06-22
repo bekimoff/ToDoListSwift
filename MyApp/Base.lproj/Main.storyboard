@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lew-DZ-KXg">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--To-do-->
@@ -40,72 +39,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <segue destination="0HH-fJ-NMK" kind="presentation" identifier="goto_login" id="Vo4-lj-rV6"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JRW-DD-sh9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="415" y="141"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="aCI-O1-1TF">
-            <objects>
-                <viewController title="Login" id="0HH-fJ-NMK" customClass="LoginViewController" customModule="ToDoListApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xaU-p5-EF6"/>
-                        <viewControllerLayoutGuide type="bottom" id="8cf-PU-fkL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4oe-QL-VER">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign In" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uX-SD-3yX" userLabel="Sign In">
-                                <rect key="frame" x="130" y="91" width="60" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8JJ-mH-FFo">
-                                <rect key="frame" x="128" y="277" width="64" height="30"/>
-                                <state key="normal" title="Submit">
-                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="submit:" destination="0HH-fJ-NMK" eventType="touchUpInside" id="U57-FD-fum"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="b6n-jG-lZf" userLabel="txtUsername">
-                                <rect key="frame" x="16" y="149" width="288" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3cI-lZ-w35" userLabel="txtPassword">
-                                <rect key="frame" x="16" y="215" width="288" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3cI-lZ-w35" firstAttribute="top" secondItem="xaU-p5-EF6" secondAttribute="bottom" constant="195" id="GA4-2J-VIt"/>
-                            <constraint firstItem="3cI-lZ-w35" firstAttribute="leading" secondItem="4oe-QL-VER" secondAttribute="leadingMargin" id="TFS-dx-Sdb"/>
-                            <constraint firstItem="b6n-jG-lZf" firstAttribute="leading" secondItem="4oe-QL-VER" secondAttribute="leadingMargin" id="otT-b6-ZhH"/>
-                            <constraint firstItem="3cI-lZ-w35" firstAttribute="trailing" secondItem="4oe-QL-VER" secondAttribute="trailingMargin" id="phE-RI-1BA"/>
-                            <constraint firstItem="b6n-jG-lZf" firstAttribute="trailing" secondItem="4oe-QL-VER" secondAttribute="trailingMargin" id="sya-QB-1vw"/>
-                            <constraint firstItem="b6n-jG-lZf" firstAttribute="top" secondItem="xaU-p5-EF6" secondAttribute="bottom" constant="129" id="xF5-2R-NKF"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="txtPassword" destination="3cI-lZ-w35" id="cVY-fM-vyq"/>
-                        <outlet property="txtUsername" destination="b6n-jG-lZf" id="Ds0-Ce-1Af"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qpp-uj-ZxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="415" y="950"/>
         </scene>
         <!--Add to-do Item-->
         <scene sceneID="zot-Wg-S8E">

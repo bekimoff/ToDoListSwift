@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import LocalAuthentication
+
 
 
 @objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController {
@@ -26,27 +28,18 @@ import CoreData
    
     
     override func viewDidLoad(){
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         fetchLog()
         if(items.count==0){
             loadInitialData()
         }
-        if (isLoggedIn != 1) {
-            self.performSegueWithIdentifier("goto_login", sender: self)
-        } else {
-            super.viewDidLoad()
-        }
+        super.viewDidLoad()
+        authenticateUser()
     }
-    
-    
     
     @IBAction func logout(sender : UIBarButtonItem) {
         
-        let appDomain = NSBundle.mainBundle().bundleIdentifier
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
-        
-        self.performSegueWithIdentifier("goto_login", sender: self)
+        authenticateUser()
+
     }
     
     func loadInitialData(){
@@ -154,6 +147,92 @@ import CoreData
         
         self.toDoItems = NSMutableArray(array:items)
     }
+    
+    func login(password: String) {
+        if password == "password" {
+            self.fetchLog()
+        } else {
+            self.showPasswordAlert()
+        }
+    }
+    
+    func showPasswordAlert() {
+        let alertController : UIAlertController = UIAlertController(title:"TouchID Not Found" , message: "Please enter password", preferredStyle: .Alert)
+        
+        let doneAction : UIAlertAction = UIAlertAction(title: "Done", style: .Default) { (action) -> Void in
+            let passwordTextField = alertController.textFields![0] as! UITextField
+            self.login(passwordTextField.text)
+        }
+        doneAction.enabled = false
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "Password"
+            textField.secureTextEntry = true
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue(), usingBlock: { (notification) -> Void in
+                doneAction.enabled = textField.text != ""
+            })
+        }
+        
+        alertController.addAction(doneAction)
+        self.presentViewController(alertController, animated: true) {
+            // Nothing to do here
+        }
+
+    }
+
+    
+    func authenticateUser() {
+        let context : LAContext = LAContext()
+        
+        var error : NSError?
+        var myLocalizedReasonString : NSString = "Authentication is required"
+        
+        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &error) {
+            context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString as String, reply: { (success : Bool, evaluationError : NSError?) -> Void in
+                if success {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        self.fetchLog()
+                    })
+                }
+                else {
+                    // Authentification failed
+                    println(evaluationError?.localizedDescription)
+                    
+                    switch evaluationError!.code {
+                    case LAError.SystemCancel.rawValue:
+                        println("Authentication cancelled by the system")
+                    case LAError.UserCancel.rawValue:
+                        println("Authentication cancelled by the user")
+                    case LAError.UserFallback.rawValue:
+                        println("User wants to use a password")
+                        // We show the alert view in the main thread (always update the UI in the main thread)
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            self.showPasswordAlert()
+                        })
+                    default:
+                        println("Authentication failed")
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            self.showPasswordAlert()
+                        })
+                    }
+                }
+            })
+        }
+        else {
+            switch error!.code {
+            case LAError.TouchIDNotEnrolled.rawValue:
+                println("TouchID not enrolled")
+            case LAError.PasscodeNotSet.rawValue:
+                println("Passcode not set")
+            default:
+                println("TouchID not available")
+            }
+            self.showPasswordAlert()
+        }
+
+    }
+
 }
 
 
